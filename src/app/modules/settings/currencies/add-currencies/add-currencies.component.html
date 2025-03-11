@@ -1,0 +1,71 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header border-bottom">
+      <h5 class="section-title text-black">Currencies</h5>
+      <button type="button" class="border-0 bg-white" aria-label="Close" (click)="closeModal()">
+        <app-icons iconName="close" color="#F45859"></app-icons>
+      </button>
+    </div>
+
+    <form [formGroup]="currencyForm" (ngSubmit)="submitForm()" class="p-3">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="currencyName" class="form-label">Name <span class="text-danger">*</span></label>
+          <input type="text" id="currencyName" formControlName="name" class="form-control bg-white">
+          <div *ngIf="currencyForm.get('name')?.touched && currencyForm.get('name')?.invalid" class="text-danger">
+            <small>Name is required.</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="currencySymbol" class="form-label">Symbol <span class="text-danger">*</span></label>
+          <input type="text" id="currencySymbol" formControlName="symbol" class="form-control bg-white">
+          <div *ngIf="currencyForm.get('symbol')?.touched && currencyForm.get('symbol')?.invalid" class="text-danger">
+            <small>Symbol is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="currencyCode" class="form-label">Code <span class="text-danger">*</span></label>
+          <input type="text" id="currencyCode" formControlName="code" class="form-control bg-white">
+          <div *ngIf="currencyForm.get('code')?.touched && currencyForm.get('code')?.invalid" class="text-danger">
+            <small>Code is required.</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="exchangeRate" class="form-label">Exchange Rate</label>
+          <input type="number" id="exchangeRate" formControlName="exchangeRate" class="form-control bg-white">
+          <div *ngIf="currencyForm.get('exchangeRate')?.touched && currencyForm.get('exchangeRate')?.invalid"
+            class="text-danger">
+            <small *ngIf="currencyForm.get('exchangeRate')?.errors?.['required']">Exchange rate is required.</small>
+            <small *ngIf="currencyForm.get('exchangeRate')?.errors?.['min']">Exchange rate must be non-negative.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label mb-1">is CryptoCurrency <span class="text-danger">*</span></label>
+        <div class="d-flex align-items-center gap-2">
+          <label class="btn radio-label">
+            <input type="radio" class="form-check-label" formControlName="isCryptoCurrency" [value]="true" class="d-none">
+            Yes
+          </label>
+          <label class="btn radio-label">
+            <input type="radio" class="form-check-label" formControlName="isCryptoCurrency" [value]="false" class="d-none">
+            No
+          </label>
+        </div>
+        <div *ngIf="currencyForm.get('isCryptoCurrency')?.touched && currencyForm.get('isCryptoCurrency')?.invalid"
+          class="text-danger">
+          <small>This field is required.</small>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-start">
+        <button type="submit" class="btn me-2 text-white save" [disabled]="isSubmitting">Save</button>
+        <button type="button" class="btn bg-white close" (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

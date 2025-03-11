@@ -1,0 +1,68 @@
+@import '../../../assets/styles/main';
+
+button.save {
+  @include submit-button(var(--red-color));
+}
+
+button.close {
+  @include close-button(var(--red-color));
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  width: 100%;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.text-danger {
+  color: #f45859 !important;
+}
+
+.btn-danger {
+  background-color: #f45859;
+  border-color: #f45859;
+}
+
+.btn-outline-danger {
+  color: #f45859;
+  border-color: #f45859;
+}
+
+.btn-danger:hover,
+.btn-outline-danger:hover {
+  background-color: #e34747;
+}
+
+.form-control {
+  border: 1px solid #ccc;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  height: 40px;
+}
+
+.form-label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.text-danger {
+  font-size: 0.875rem;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}

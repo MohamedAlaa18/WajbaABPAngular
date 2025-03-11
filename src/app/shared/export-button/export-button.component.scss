@@ -1,0 +1,36 @@
+// .dropdown {
+//   z-index: 1050;
+
+//   .btn {
+//     display: flex;
+//     align-items: center;
+//     gap: 0.5rem;
+//   }
+// }
+
+.rounded-danger {
+  border: 1px solid var(--red-color) !important;
+  color: var(--red-color) !important;
+}
+
+.dropdown-menu {
+  border: 1px solid var(--red-color) !important;
+}
+
+.h6 {
+  font-size: 18px;
+}
+
+.h5 {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.dropdown-item {
+  padding-left: 2rem;
+  padding-right: 4.4rem;
+}
+
+.dropdown-item:active {
+  background-color: #f5f5f7;
+}

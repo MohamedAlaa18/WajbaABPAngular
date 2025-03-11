@@ -1,0 +1,74 @@
+<div class="d-flex items-center gap-2">
+  <app-settings-sidebar></app-settings-sidebar>
+
+  <section class="bg-white p-4 flex-grow-1 mb-3">
+    <div class="d-flex align-items-center justify-content-between w-100">
+      <h2 class="section-title text-black">FAQs</h2>
+    </div>
+
+    <hr class="my-3 border-top border-secondary">
+
+    <form [formGroup]="questionAnswerForm" (ngSubmit)="onSave()">
+      <div formArrayName="questions">
+        <div *ngFor="let questionGroup of questions.controls; let i = index" [formGroupName]="i" class="mb-4">
+
+          <!-- Question Input -->
+          <div class="form-group">
+            <label for="question-{{i}}">Question {{ i + 1 }}</label>
+
+            <div class="d-flex gap-2">
+              <input id="question-{{i}}" formControlName="question" [readonly]="!isEditable[i]"
+                placeholder="Enter the question" class="form-control bg-white" type="text">
+              <div *ngIf="questionGroup.get('question')?.invalid && questionGroup.get('question')?.touched"
+                class="text-danger small">This field is required.</div>
+
+              <!-- Edit Button -->
+              <div class="position-relative">
+                <span class="tooltip-text position-absolute start-50 translate-middle badge bg-black rounded-0 p-1">
+                  {{ isEditable[i] ? 'Save' : 'Edit' }}
+                </span>
+                <button type="button" class="btn p-1 rounded-1 border-0" (click)="toggleEdit(i)">
+                  <!-- <img [src]="isEditable[i] ? 'assets/images/save.svg' : 'assets/images/edit.svg'" alt="edit"> -->
+                  <img [src]="'assets/images/edit.svg'" alt="edit">
+                </button>
+              </div>
+
+              <!-- Delete Button -->
+              <div class="position-relative">
+                <span class="tooltip-text position-absolute start-50 translate-middle badge bg-black rounded-0 p-1">
+                  Delete
+                </span>
+                <button type="button" (click)="openConfirmDeleteModal(questionGroup.get('id').value, 'FAQ')"
+                  class="btn p-1 rounded-1 border-0">
+                  <img src="assets/images/delete.svg" alt="delete">
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex gap-1 mt-2">
+            <!-- Answer Input -->
+            <div class="form-group flex-grow-1">
+              <label for="answer-{{i}}">Answer {{ i + 1 }}</label>
+              <textarea id="answer-{{i}}" formControlName="answer" [readonly]="!isEditable[i]"
+                placeholder="Enter the answer" class="form-control bg-white" rows="3"></textarea>
+              <div *ngIf="questionGroup.get('answer')?.invalid && questionGroup.get('answer')?.touched"
+                class="text-danger small">This field is required.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn d-flex align-items-center gap-2 px-0 py-3" (click)="addQuestion()"
+        aria-label="Add Question">
+        <app-icons iconName="add" color="#0060B9"></app-icons>
+        Add Question
+      </button>
+
+      <!-- Save Button -->
+      <button type="submit" class="btn btn-danger font-weight-bold btn-lg px-4 py-2 rounded-pill">
+        Save
+      </button>
+    </form>
+  </section>
+</div>

@@ -1,0 +1,57 @@
+// Mixin for styling the radio button label with checked state
+@mixin radio-label($checked-background, $checked-border, $default-background, $default-border) {
+  .radio-label {
+    border: 1px solid $default-border;
+    background-color: $default-background;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7.5px;
+    padding-inline: 1.5rem;
+    transition: background-color 0.3s ease, border 0.3s ease;
+    color: black;
+  }
+
+  input[type="radio"]:checked+.radio-label {
+    background-color: $checked-background;
+    border: 1px solid $checked-border;
+    width: 94px;
+  }
+
+  label:has(input[type="radio"]:checked) {
+    background-color: $checked-background;
+    border: 1px solid $checked-border;
+  }
+}
+
+
+@mixin submit-button($bg-color, $font-size: 20px, $width: 177px, $height: 48px, $border-radius: 24px, $font-weight: 700) {
+  width: $width;
+  height: $height;
+  border-radius: $border-radius;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $bg-color !important;
+  border: none;
+}
+
+@mixin close-button($bg-color, $font-size: 20px, $width: 177px, $height: 48px, $border-radius: 24px, $font-weight: 700) {
+  width: $width;
+  height: $height;
+  border-radius: $border-radius;
+  font-size: $font-size;
+  font-weight: $font-weight;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white !important;
+  border: 1px solid $bg-color !important;
+  color: $bg-color;
+  border: none;
+}

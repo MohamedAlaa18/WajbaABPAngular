@@ -1,0 +1,38 @@
+<section class="p-4 bg-white" *ngIf="voucher">
+  <div class="border-bottom mb-4 pb-2">
+    <span class="fw-semibold text-black fs-4">Voucher</span>
+  </div>
+
+  <div class="d-flex gap-4">
+    <div class="card border rounded">
+      <img [src]="voucher.imageUrl" alt="{{ voucher.name }}" class="card-img-top rounded" />
+    </div>
+
+    <div class="d-flex gap-4 px-3">
+      <ul class="list-disc text-black">
+        <li><strong>Name:</strong></li>
+        <li><strong>Code:</strong></li>
+        <li><strong>Discount:</strong></li>
+        <li><strong>Discount Type:</strong></li>
+        <li><strong>Start Date:</strong></li>
+        <li><strong>End Date:</strong></li>
+        <li><strong>Minimum Order Amount:</strong></li>
+        <li><strong>Maximum Discount:</strong></li>
+        <li><strong>Limit Per User:</strong></li>
+        <li><strong>Description:</strong></li>
+      </ul>
+      <div class="">
+        <p>{{ voucher.name }}</p>
+        <p>{{ voucher.code }}</p>
+        <p>{{ (voucher.discount).toFixed(2) }}</p>
+        <p>{{ voucher.discountType === 0 ? 'Percentage' : 'Fixed' }}</p>
+        <p>{{ formatDate(voucher.startDate) }}</p> <!-- Use formatDate for startDate -->
+        <p>{{ formatDate(voucher.endDate) }}</p> <!-- Use formatDate for endDate -->
+        <p>{{ voucher.minimumOrderAmount }}</p>
+        <p>{{ voucher.maximumDiscount }}</p>
+        <p>{{ voucher.limitPerUser }}</p>
+        <p>{{ voucher.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

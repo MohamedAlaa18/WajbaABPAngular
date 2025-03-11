@@ -1,0 +1,115 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header border-bottom">
+      <h5 class="section-title text-black">{{userTypeLabel}}</h5>
+      <button type="button" class="border-0 bg-white" aria-label="Close" (click)="closeModal()">
+        <app-icons iconName="close" color="#F45859"></app-icons>
+      </button>
+    </div>
+
+    <form [formGroup]="userForm" (ngSubmit)="submitForm()" class="p-3">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="fullName" class="form-label">Name <span class="text-danger">*</span></label>
+          <input type="text" id="fullName" formControlName="fullName" class="form-control bg-white">
+          <div *ngIf="userForm.get('fullName')?.touched && userForm.get('fullName')?.invalid" class="text-danger">
+            <small>Name is required.</small>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="userEmail" class="form-label">Email <span class="text-danger">*</span></label>
+          <input type="email" id="userEmail" formControlName="email" class="form-control bg-white">
+          <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid" class="text-danger">
+            <small *ngIf="userForm.get('email')?.errors?.['required']">Email is required.</small>
+            <small *ngIf="userForm.get('email')?.errors?.['email']">Invalid email format.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6" [class.col-md-12]="userTypeLabel !== 'Employees'">
+          <label for="userPhone" class="form-label">Phone <span class="text-danger">*</span></label>
+          <input type="text" id="userPhone" formControlName="phone" class="form-control bg-white">
+          <div *ngIf="userForm.get('phone')?.touched && userForm.get('phone')?.invalid" class="text-danger">
+            <small>Phone is required.</small>
+          </div>
+        </div>
+
+        <div class="col-md-6" *ngIf="userTypeLabel === 'Employees'">
+          <label for="role" class="form-label">Role <span class="text-danger">*</span></label>
+          <select id="role" formControlName="role" class="form-control bg-white">
+            <option [value]="null">--</option>
+            <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+          </select>
+          <div *ngIf="userForm.get('role')?.touched && userForm.get('role')?.invalid" class="text-danger">
+            <small>Role is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="userPassword" class="form-label">Password <span class="text-danger">*</span></label>
+          <input type="password" id="userPassword" formControlName="password" class="form-control bg-white">
+          <div *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid" class="text-danger">
+            <small>Password is required.</small>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="userConfirmPassword" class="form-label">
+            Confirm Password <span class="text-danger">*</span></label>
+          <input type="password" id="userConfirmPassword" formControlName="confirmPassword"
+            class="form-control bg-white">
+          <div *ngIf="userForm.get('confirmPassword')?.touched && userForm.get('confirmPassword')?.invalid"
+            class="text-danger">
+            <small>Confirm Password is required.</small>
+          </div>
+        </div>
+
+        <!-- Add this block to show the passwordsMatch validation error -->
+        <div
+          *ngIf="userForm.errors?.['passwordsMismatch'] && (userForm.get('password')?.touched || userForm.get('confirmPassword')?.touched)"
+          class="text-danger">
+          <small>Passwords do not match.</small>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6" *ngIf="userTypeLabel !== 'Customers'">
+          <label for="branchList" class="form-label">Branches <span class="text-danger">*</span></label>
+          <ng-select [items]="branchList" bindLabel="name" bindValue="id" [multiple]="true"
+            placeholder="Select branchList" formControlName="branchList" class="custom">
+          </ng-select>
+          <div *ngIf="userForm.get('branchList')?.touched && userForm.get('branchList')?.invalid" class="text-danger">
+            <small>At least one branch must be selected.</small>
+          </div>
+          <div *ngIf="returnedErrorMessage" class="text-danger">
+            <small>{{returnedErrorMessage}}</small>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <label for="userStatus" class="form-label">Status <span class="text-danger">*</span></label>
+          <div class="d-flex align-items-center gap-2">
+            <label class="btn radio-label">
+              <input type="radio" formControlName="status" [value]="1" class="d-none"> Active
+            </label>
+            <label class="btn radio-label">
+              <input type="radio" formControlName="status" [value]="0" class="d-none"> Inactive
+            </label>
+          </div>
+          <div *ngIf="userForm.get('status')?.touched && userForm.get('status')?.invalid" class="text-danger">
+            <small>Status is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-start">
+        <button type="submit" class="btn me-2 text-white save" [disabled]="isSubmitting">Save</button>
+        <button type="button" class="btn bg-white close" (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

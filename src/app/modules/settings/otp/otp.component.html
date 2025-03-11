@@ -1,0 +1,59 @@
+<div class="d-flex items-center gap-2">
+  <app-settings-sidebar></app-settings-sidebar>
+
+  <section class="otp-section bg-white p-4 flex-grow-1">
+    <div class="header mb-4 pb-2 border-bottom">
+      <span class="section-title text-black">OTP</span>
+    </div>
+
+    <form [formGroup]="otpForm" (ngSubmit)="onSubmit()" class="form-container">
+      <div class="row">
+        <!-- Order Type -->
+        <div class="col-md-6 mb-3">
+          <label>Order Type <span class="text-danger">*</span></label>
+          <select formControlName="type" class="form-select bg-white">
+            <option value="" disabled selected>--</option>
+            <option *ngFor="let type of orderTypes" [value]="type.value">{{ type.label }}</option>
+          </select>
+          <div *ngIf="otpForm.get('type')?.invalid && otpForm.get('type')?.touched" class="text-danger">
+            Type is required.
+          </div>
+        </div>
+
+        <!-- OTP Length -->
+        <div class="col-md-6 mb-3">
+          <label>OTP Length <span class="text-danger">*</span></label>
+          <select formControlName="digitLimit" class="form-select bg-white">
+            <option value="" disabled selected>--</option>
+            <option *ngFor="let length of otpLengths" [value]="length">{{ length }}</option>
+          </select>
+          <div *ngIf="otpForm.get('digitLimit')?.invalid && otpForm.get('digitLimit')?.touched" class="text-danger">
+            OTP Length is required.
+          </div>
+        </div>
+      </div>
+
+      <!-- OTP Expire Time -->
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>OTP Expire Time <span class="text-danger">*</span></label>
+          <select formControlName="expiryTimeInMinutes" class="form-select bg-white">
+            <option value="" disabled selected>--</option>
+            <option *ngFor="let time of otpExpireTimes" [value]="time">{{ time }}</option>
+          </select>
+          <div *ngIf="otpForm.get('expiryTimeInMinutes')?.invalid && otpForm.get('expiryTimeInMinutes')?.touched"
+            class="text-danger">
+            Expire Time is required.
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="form-group">
+        <button type="submit" class="btn btn-danger">
+          Save
+        </button>
+      </div>
+    </form>
+  </section>
+</div>

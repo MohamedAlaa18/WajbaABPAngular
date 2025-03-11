@@ -1,0 +1,86 @@
+/* Sidebar container */
+.sidebar-section {
+  display: flex;
+  width: 100%;
+  max-height: calc(100dvh - 1.25em - 3em);
+  overflow-x: auto;
+  min-width: fit-content;
+  background-color: white;
+}
+
+/* Sidebar styles */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: width 0.3s ease;
+}
+
+.sidebar-expanded {
+  width: 275px;
+}
+
+.sidebar-collapsed {
+  width: 60px;
+}
+
+/* Sidebar content */
+.sidebar-content {
+  padding: 16px;
+  padding-bottom: 24px;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.menu-header {
+  font-size: 20px;
+  font-weight: 500;
+  color: #555457;
+  margin: 16px;
+}
+
+/* Menu item styles */
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #818181;
+  transition: background-color 0.3s ease;
+}
+
+.menu-item:hover {
+  background-color: #cccccc4d;
+}
+
+.menu-item-active {
+  background-color: #f458591f;
+  color: #f45859;
+}
+
+/* Icon styles */
+.icon-wrapper {
+  position: relative;
+}
+
+.menu-item-text {
+  display: none;
+}
+
+.sidebar-expanded .menu-item-text {
+  display: inline;
+}

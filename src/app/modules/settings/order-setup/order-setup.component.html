@@ -1,0 +1,214 @@
+<div class="d-flex items-center gap-2">
+  <app-settings-sidebar></app-settings-sidebar>
+
+  <section class="bg-white p-4 flex-grow-1 mb-3">
+    <div class="border-bottom mb-4 pb-2">
+      <span class="section-title text-black">Order Setup</span>
+    </div>
+
+    <!-- Order Form -->
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+      <div class="border mb-4 px-4 py-4 mt-5">
+        <div class="d-flex justify-content-between gap-3 position-relative">
+          <div class="section-label border d-flex justify-content-center align-items-center bg-white mb-4 mx-3">
+            <span class="font-weight-bold h5 py-2 px-4 m-0 text-danger">Order</span>
+          </div>
+
+          <!-- Food Preparation Time -->
+          <div class="w-50">
+            <div class="mb-4">
+              <label for="foodPreparationTime" class="form-label">Food Preparation Time <span class="text-danger">(In
+                  Minutes)*</span></label>
+              <input type="number" id="foodPreparationTime" formControlName="foodPreparationTime"
+                class="form-control bg-white" required />
+              <div
+                *ngIf="orderForm.get('foodPreparationTime')?.invalid && (orderForm.get('foodPreparationTime')?.touched || orderForm.get('foodPreparationTime')?.dirty)"
+                class="text-danger">
+                <small *ngIf="orderForm.get('foodPreparationTime')?.errors?.['required']">
+                  Food Preparation Time is required.
+                </small>
+              </div>
+            </div>
+
+            <!-- Takeaway -->
+            <div class="mb-4">
+              <label for="takeaway" class="form-label">Takeaway</label>
+              <div class="d-flex align-items-center gap-2">
+                <label class="btn radio-label">
+                  <input type="radio" id="enableTakeaway" formControlName="isTakeawayEnabled" [value]="true" class="d-none">
+                  Left
+                </label>
+                <label class="btn radio-label">
+                  <input type="radio" id="disableTakeaway" formControlName="isTakeawayEnabled" [value]="false" class="d-none">
+                  Right
+                </label>
+              </div>
+              <div
+                *ngIf="orderForm.get('takeaway')?.invalid && (orderForm.get('takeaway')?.touched || orderForm.get('takeaway')?.dirty)"
+                class="text-danger">
+                <small *ngIf="orderForm.get('takeaway')?.errors?.['required']">
+                  Takeaway is required.
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Schedule Order Slot Duration -->
+          <div class="w-50">
+            <div class="mb-4">
+              <label for="scheduleOrderSlotDuration" class="form-label">Schedule Order Slot Duration <span
+                  class="text-danger">(In Minutes)*</span></label>
+              <input type="number" id="scheduleOrderSlotDuration" formControlName="scheduleOrderSlotDuration"
+                class="form-control bg-white" required />
+              <div
+                *ngIf="orderForm.get('scheduleOrderSlotDuration')?.invalid && (orderForm.get('scheduleOrderSlotDuration')?.touched || orderForm.get('scheduleOrderSlotDuration')?.dirty)"
+                class="text-danger">
+                <small *ngIf="orderForm.get('scheduleOrderSlotDuration')?.errors?.['required']">
+                  Schedule Order Slot Duration is required.
+                </small>
+              </div>
+            </div>
+
+            <!-- Delivery -->
+            <div class="mb-4">
+              <label for="delivery" class="form-label">Delivery</label>
+              <div class="d-flex align-items-center gap-2">
+                <label class="btn radio-label">
+                  <input type="radio" id="enableDelivery" formControlName="isDeliveryEnabled" [value]="true" class="d-none">
+                  Enable
+                </label>
+                <label class="btn radio-label">
+                  <input type="radio" id="disableDelivery" formControlName="isDeliveryEnabled" [value]="false" class="d-none">
+                  Disable
+                </label>
+              </div>
+              <div
+                *ngIf="orderForm.get('delivery')?.invalid && (orderForm.get('delivery')?.touched || orderForm.get('delivery')?.dirty)"
+                class="text-danger">
+                <small *ngIf="orderForm.get('delivery')?.errors?.['required']">
+                  Delivery is required.
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Preparation time Section -->
+      <div class="border mb-4 px-4 py-4 mt-5">
+        <div class="d-flex justify-content-between gap-3 position-relative">
+
+          <!-- Order Preparation Time -->
+          <div class="section-label border d-flex justify-content-center align-items-center bg-white mb-4 mx-3">
+            <span class="font-weight-bold h5 py-2 px-4 m-0 text-danger">Order Preparation time</span>
+          </div>
+
+          <!-- On Time -->
+          <div class="w-50">
+            <div class="mb-4">
+              <label for="onTime" class="form-label">On Time <span class="text-danger">(In Minutes)*</span></label>
+              <input type="text" id="onTime" formControlName="onTime" class="form-control bg-white"
+                [value]="orderForm.get('onTime')?.value?.openingTime || ''" [readonly]="true"
+                (click)="openTimeModal('onTime')" />
+              <div
+                *ngIf="orderForm.get('onTime')?.invalid && (orderForm.get('onTime')?.touched || orderForm.get('onTime')?.dirty)"
+                class="text-danger">
+                <small *ngIf="orderForm.get('onTime')?.errors?.['required']">On Time is required.</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Warning Charge -->
+          <div class="w-50">
+            <div class="mb-4">
+              <label for="warning" class="form-label">Warning <span class="text-danger">(In Minutes)*</span></label>
+              <input type="text" id="warning" formControlName="warning" class="form-control bg-white"
+                [value]="orderForm.get('warning')?.value?.openingTime || ''" [readonly]="true"
+                (click)="openTimeModal('warning')" />
+              <div
+                *ngIf="orderForm.get('warning')?.invalid && (orderForm.get('warning')?.touched || orderForm.get('warning')?.dirty)"
+                class="text-danger">
+                <small *ngIf="orderForm.get('warning')?.errors?.['required']">Warning is required.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Delay Time -->
+        <div class="mb-4">
+          <label for="delayTime" class="form-label">Delay Time <span class="text-danger">(In Minutes)*</span></label>
+          <input type="text" id="delayTime" formControlName="delayTime" class="form-control bg-white"
+            [value]="orderForm.get('delayTime')?.value?.openingTime || ''" [readonly]="true"
+            (click)="openTimeModal('delayTime')" />
+          <div
+            *ngIf="orderForm.get('delayTime')?.invalid && (orderForm.get('delayTime')?.touched || orderForm.get('delayTime')?.dirty)"
+            class="text-danger">
+            <small *ngIf="orderForm.get('delayTime')?.errors?.['required']">Delay Time is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Delivery Charge Section -->
+      <div class="border mb-4 px-4 py-4 mt-5">
+        <div class="d-flex justify-content-between gap-3 position-relative">
+          <div class="section-label border d-flex justify-content-center align-items-center bg-white mb-4 mx-3">
+            <span class="font-weight-bold h5 py-2 px-4 m-0 text-danger">Delivery Charge</span>
+          </div>
+
+          <!-- Free Delivery Kilometer -->
+          <div class="w-50">
+            <div class="mb-4">
+              <label for="freeDeliveryKilometer" class="form-label">Free Delivery Kilometer <span
+                  class="text-danger">*</span></label>
+              <input type="number" id="freeDeliveryKilometer" formControlName="freeDeliveryKilometer"
+                class="form-control bg-white" required />
+              <div
+                *ngIf="orderForm.get('freeDeliveryKilometer')?.invalid && (orderForm.get('freeDeliveryKilometer')?.touched || orderForm.get('freeDeliveryKilometer')?.dirty)"
+                class="text-danger">
+                <small *ngIf="orderForm.get('freeDeliveryKilometer')?.errors?.['required']">
+                  Free Delivery Kilometer is required.
+                </small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Basic Delivery Charge -->
+          <div class="w-50">
+            <div class="mb-4">
+              <label for="basicDeliveryCharge" class="form-label">Basic Delivery Charge <span
+                  class="text-danger">*</span></label>
+              <input type="number" id="basicDeliveryCharge" formControlName="basicDeliveryCharge"
+                class="form-control bg-white" required />
+              <div
+                *ngIf="orderForm.get('basicDeliveryCharge')?.invalid && (orderForm.get('basicDeliveryCharge')?.touched || orderForm.get('basicDeliveryCharge')?.dirty)"
+                class="text-danger">
+                <small *ngIf="orderForm.get('basicDeliveryCharge')?.errors?.['required']">
+                  Basic Delivery Charge is required.
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charge Per Kilo -->
+        <div class="mb-4">
+          <label for="chargePerKilo" class="form-label">Charge Per Kilo <span class="text-danger">*</span></label>
+          <input type="number" id="chargePerKilo" formControlName="chargePerKilo" class="form-control bg-white"
+            required />
+          <div
+            *ngIf="orderForm.get('chargePerKilo')?.invalid && (orderForm.get('chargePerKilo')?.touched || orderForm.get('chargePerKilo')?.dirty)"
+            class="text-danger">
+            <small *ngIf="orderForm.get('chargePerKilo')?.errors?.['required']">
+              Charge Per Kilo is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Save Button -->
+      <div class="d-flex gap-4 mt-4">
+        <button type="submit" class="btn btn-danger w-25">Save</button>
+      </div>
+    </form>
+  </section>
+</div>

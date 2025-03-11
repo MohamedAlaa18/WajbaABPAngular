@@ -1,0 +1,25 @@
+<section class="sidebar-section">
+  <!-- Sidebar -->
+  <div class="sidebar" [ngClass]="{'sidebar-expanded': isSidebarOpen, 'sidebar-collapsed': !isSidebarOpen}"
+    [ngbCollapse]="!isSidebarOpen">
+    <div class="sidebar-content">
+      <ul class="menu-list">
+        <li *ngFor="let item of menuItems">
+          <!-- Render header if the type is 'header' -->
+          <p *ngIf="item.type === 'header'" class="menu-header">{{ item.name }}</p>
+
+          <!-- Render link if the type is 'link' and component is defined -->
+          <a [href]="'settings/' + item.href" *ngIf="item.type === 'link' && item.name" class="menu-item" [ngClass]="{
+            'menu-item-active': isActiveRoute(item.href)
+          }">
+            <div class="icon-wrapper">
+              <app-icons [iconName]="item.iconName"
+                [color]="isActiveRoute(item.href) ? '#F45859' : '#818181'"></app-icons>
+            </div>
+            <span class="menu-item-text">{{ item.name }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,57 @@
+@import '../../../../assets/styles/main';
+
+section {
+  height: fit-content;
+  overflow-x: auto;
+  width: 100px;
+  // max-width: calc(100vw - 0.75rem - 292);
+}
+
+.btn-danger.save {
+  @include submit-button(var(--red-color));
+}
+
+.btn-danger.add {
+  @include submit-button(var(--red-color));
+  width: fit-content;
+  height: fit-content;
+  font-size: 14px;
+}
+
+.btn-danger.py-1.add {
+  padding-top: 0.275rem !important;
+  padding-bottom: 0.275rem !important;
+}
+
+button.position-absolute {
+  top: -1rem;
+  right: -1rem;
+}
+
+.h5 {
+  font-size: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-bordered {
+  border: 1px solid #cccccc;
+}
+
+.table td,
+.table th {
+  padding: 1.5rem;
+}
+
+.form-control {
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 0.375rem 0.75rem;
+}
+
+td {
+  vertical-align: middle;
+}

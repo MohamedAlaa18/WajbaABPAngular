@@ -1,0 +1,108 @@
+<div class="modal-overlay" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header border-bottom">
+      <h5 class="section-title text-black">Branches</h5>
+      <button type="button" class="border-0 bg-white" aria-label="Close" (click)="closeModal()">
+        <app-icons iconName="close" color="#F45859"></app-icons>
+      </button>
+    </div>
+
+    <form [formGroup]="branchForm" (ngSubmit)="submitForm()" class="p-3">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="branchName" class="form-label">Name <span class="text-danger">*</span></label>
+          <input type="text" id="branchName" formControlName="name" class="form-control bg-white">
+          <div *ngIf="branchForm.get('name')?.touched && branchForm.get('name')?.invalid" class="text-danger">
+            <small *ngIf="branchForm.get('name')?.errors?.['required']">Name is required.</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="branchLongitude" class="form-label">Latitude/Longitude</label>
+          <div class="input-group">
+            <input type="text" id="branchLongitude" formControlName="longitude" class="form-control bg-white">
+            <input type="text" id="branchLatitude" formControlName="latitude" class="form-control bg-white rounded-end">
+            <button type="button" class="btn map border-0" (click)="openMapModal()">
+              <app-icons iconName="map" color="#F45859"></app-icons>
+            </button>
+          </div>
+          <div
+            *ngIf="branchForm.get('longitude')?.touched && branchForm.get('longitude')?.invalid || branchForm.get('latitude')?.touched && branchForm.get('latitude')?.invalid"
+            class="text-danger">
+            <small>Longitude and Latitude are required.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="branchEmail" class="form-label">Email <span class="text-danger">*</span></label>
+          <input type="email" id="branchEmail" formControlName="email" class="form-control bg-white">
+          <div *ngIf="branchForm.get('email')?.touched && branchForm.get('email')?.invalid" class="text-danger">
+            <small *ngIf="branchForm.get('email')?.errors?.['required']">Email is required.</small>
+            <small *ngIf="branchForm.get('email')?.errors?.['email']">Please enter a valid email.</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="branchCity" class="form-label">City <span class="text-danger">*</span></label>
+          <input type="text" id="branchCity" formControlName="city" class="form-control bg-white">
+          <div *ngIf="branchForm.get('city')?.touched && branchForm.get('city')?.invalid" class="text-danger">
+            <small>City is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="branchState" class="form-label">State <span class="text-danger">*</span></label>
+          <input type="text" id="branchState" formControlName="state" class="form-control bg-white">
+          <div *ngIf="branchForm.get('state')?.touched && branchForm.get('state')?.invalid" class="text-danger">
+            <small>State is required.</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="branchPhone" class="form-label">Phone <span class="text-danger">*</span></label>
+          <input type="text" id="branchPhone" formControlName="phone" class="form-control bg-white">
+          <div *ngIf="branchForm.get('phone')?.touched && branchForm.get('phone')?.invalid" class="text-danger">
+            <small>Phone number is required.</small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label for="branchZipCode" class="form-label">Zip Code <span class="text-danger">*</span></label>
+          <input type="text" id="branchZipCode" formControlName="zipCode" class="form-control bg-white">
+          <div *ngIf="branchForm.get('zipCode')?.touched && branchForm.get('zipCode')?.invalid" class="text-danger">
+            <small>Zip code is required.</small>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>Status</label>
+          <div class="d-flex align-items-center gap-2">
+            <label class="btn radio-label">
+              <input type="radio" class="form-check-label" formControlName="status" [value]="1" class="d-none">
+              Active
+            </label>
+            <label class="btn radio-label">
+              <input type="radio" class="form-check-label" formControlName="status" [value]="0" class="d-none">
+              Inactive
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="branchAddress" class="form-label">Address <span class="text-danger">*</span></label>
+        <textarea id="branchAddress" formControlName="address" class="form-control bg-white" rows="3"></textarea>
+        <div *ngIf="branchForm.get('address')?.touched && branchForm.get('address')?.invalid" class="text-danger">
+          <small>Address is required.</small>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-start">
+        <button type="submit" class="btn me-2 text-white save" [disabled]="isSubmitting">Save</button>
+        <button type="button" class="btn bg-white close" (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

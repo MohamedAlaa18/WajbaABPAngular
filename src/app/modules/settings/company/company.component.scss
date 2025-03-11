@@ -1,0 +1,30 @@
+@import '../../../../assets/styles/main';
+
+section {
+  height: fit-content;
+}
+
+.h5 {
+  font-size: 20px;
+}
+
+.text-danger {
+  color: var(--red-color) !important;
+}
+
+.btn-danger {
+  background-color: var(--red-color) !important;
+}
+
+button {
+  @include submit-button(var(--red-color));
+}
+
+input {
+  border: 1px solid #CCCCCC4D !important;
+  height: 40px;
+}
+
+textarea {
+  height: 70px;
+}

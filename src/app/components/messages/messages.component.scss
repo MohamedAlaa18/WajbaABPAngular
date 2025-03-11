@@ -1,0 +1,29 @@
+section{
+  height: calc(100dvh - 1.25em - 3em - 3rem);
+}
+.profiles-section {
+  // height: calc(100dvh - 1.25em - 3em - 3rem);
+  // min-height: 100%;
+  overflow-x: auto;
+  min-width: fit-content;
+}
+
+.text-danger {
+  color: var(--red-color) !important;
+}
+
+.bg-danger {
+  background-color: var(--red-color) !important;
+}
+
+.whitespace-pre-wrap {
+  white-space: pre;
+}
+
+.bg-danger-50 {
+  background-color: #F458591F;
+}
+
+.search-bar {
+  min-width: 287px;
+}

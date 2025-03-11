@@ -1,0 +1,101 @@
+<div class="d-flex items-center gap-2">
+  <app-settings-sidebar></app-settings-sidebar>
+
+  <section class="bg-white p-4 w-full h-fit flex-grow-1">
+    <div class="border-bottom mb-4 pb-2">
+      <span class="section-title text-black">Email</span>
+    </div>
+    <div class="company-form-container">
+      <form [formGroup]="siteForm" (ngSubmit)="submitForm()" class="space-y-1">
+        <!-- Row 1 -->
+        <div class="d-flex align-items-center gap-4 justify-content-between flex-wrap flex-md-nowrap">
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="host" class="form-label">Mail Host <span class="text-danger">*</span></label>
+            <input id="host" type="text" class="form-control bg-white" formControlName="host"
+              [class.is-invalid]="siteForm.get('host')?.invalid && siteForm.get('host')?.touched" />
+            <div *ngIf="siteForm.get('host')?.invalid && siteForm.get('host')?.touched" class="invalid-feedback">
+              Host is required.
+            </div>
+          </div>
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="port" class="form-label">Mail Port <span class="text-danger">*</span></label>
+            <input id="port" type="number" class="form-control bg-white" formControlName="port"
+              [class.is-invalid]="siteForm.get('port')?.invalid && siteForm.get('port')?.touched" />
+            <div *ngIf="siteForm.get('port')?.invalid && siteForm.get('port')?.touched" class="invalid-feedback">
+              <span *ngIf="siteForm.get('port')?.errors?.['required']">Port is required.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="d-flex align-items-center gap-4 justify-content-between flex-wrap flex-md-nowrap">
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="userName" class="form-label">User Name <span class="text-danger">*</span></label>
+            <input id="userName" type="text" class="form-control bg-white" formControlName="userName"
+              [class.is-invalid]="siteForm.get('userName')?.invalid && siteForm.get('userName')?.touched" />
+            <div *ngIf="siteForm.get('userName')?.invalid && siteForm.get('userName')?.touched"
+              class="invalid-feedback">
+              <div *ngIf="siteForm.get('userName')?.errors?.['required']">
+                User Name is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="password" class="form-label">Password</label>
+            <input id="password" type="password" class="form-control bg-white" formControlName="password"
+              [class.is-invalid]="siteForm.get('password')?.invalid && siteForm.get('password')?.touched" />
+            <div *ngIf="siteForm.get('password')?.invalid && siteForm.get('password')?.touched"
+              class="invalid-feedback">
+              <div *ngIf="siteForm.get('password')?.errors?.['required']">
+                Password is required.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="d-flex align-items-center gap-4 justify-content-between flex-wrap flex-md-nowrap">
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="name" class="form-label">From Name</label>
+            <input id="name" type="text" class="form-control bg-white" formControlName="name"
+              [class.is-invalid]="siteForm.get('name')?.invalid && siteForm.get('name')?.touched" />
+            <div *ngIf="siteForm.get('name')?.invalid && siteForm.get('name')?.touched" class="invalid-feedback">
+              <div *ngIf="siteForm.get('name')?.errors?.['required']">
+                From Name is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="email" class="form-label">From Email</label>
+            <input id="email" type="email" class="form-control bg-white" formControlName="email"
+              [class.is-invalid]="siteForm.get('email')?.invalid && siteForm.get('email')?.touched" />
+            <div *ngIf="siteForm.get('email')?.invalid && siteForm.get('email')?.touched" class="invalid-feedback">
+              <span *ngIf="siteForm.get('email')?.errors?.['required']">Email is required.</span>
+              <span *ngIf="siteForm.get('email')?.errors?.['email']">Invalid email format.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="form-group w-100 mb-2">
+          <label class="form-label">Encryption</label>
+          <div class="d-flex align-items-center gap-2">
+            <label class="btn radio-label">
+              <input type="radio" formControlName="mailEncryption" [value]="'ssl'" class="d-none">
+              SSL
+            </label>
+            <label class="btn radio-label">
+              <input type="radio" formControlName="mailEncryption" [value]="'tls'" class="d-none">
+              TLS
+            </label>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="d-flex justify-content-end mt-4">
+          <button type="submit" class="btn btn-danger">Save</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>

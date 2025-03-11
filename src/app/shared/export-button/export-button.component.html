@@ -1,0 +1,13 @@
+<div ngbDropdown class="d-inline-block">
+  <button class="btn rounded-danger d-flex align-items-center gap-2 px-3 py-2 dropdown-toggle" ngbDropdownToggle>
+    <img [src]="buttonIcon" [alt]="buttonLabel" class="icon">
+    <span class="h5 p-0 m-0">{{ buttonLabel }}</span>
+  </button>
+  <div ngbDropdownMenu>
+    <button class="dropdown-item d-flex align-items-center gap-2" *ngFor="let item of menuItems"
+      (click)="onMenuItemClick(item.action)">
+      <img [src]="item.icon" [alt]="item.label">
+      <span class="h6 p-0 m-0">{{ item.label }}</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+<div class="d-flex items-center gap-2">
+  <app-settings-sidebar></app-settings-sidebar>
+
+  <section class="bg-white p-4 w-full h-fit flex-grow-1">
+    <div class="border-bottom mb-4 pb-2">
+      <span class="section-title text-black">Company</span>
+    </div>
+
+    <div class="company-form-container">
+      <form [formGroup]="companyForm" (ngSubmit)="submitForm()" class="needs-validation">
+
+        <div class="d-flex align-items-center gap-4 justify-content-between flex-wrap flex-md-nowrap">
+          <!-- Name -->
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="name" class="text-black">Name <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <input id="name" formControlName="name" type="text" class="form-control bg-white" />
+            </div>
+            <div *ngIf="companyForm.get('name')?.invalid && companyForm.get('name')?.touched" class="text-danger">
+              Name is required.
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="email" class="text-black">Email <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <input id="email" formControlName="email" type="email" class="form-control bg-white" />
+            </div>
+            <div *ngIf="companyForm.get('email')?.invalid && companyForm.get('email')?.touched" class="text-danger">
+              <div *ngIf="companyForm.get('email')?.errors?.['required']">Email is required.</div>
+              <div *ngIf="companyForm.get('email')?.errors?.['email']">Invalid email format.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-4 justify-content-between flex-wrap flex-md-nowrap">
+          <!-- Phone -->
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="phone" class="text-black">Phone <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <input id="phone" formControlName="phone" type="text" class="form-control bg-white" />
+            </div>
+            <div *ngIf="companyForm.get('phone')?.invalid && companyForm.get('phone')?.touched" class="text-danger">
+              <div *ngIf="companyForm.get('phone')?.errors?.['required']">Phone number is required.</div>
+              <div *ngIf="companyForm.get('phone')?.errors?.['pattern']">Invalid phone number format.</div>
+            </div>
+          </div>
+
+          <!-- websiteURL -->
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="websiteURL" class="text-black">Website <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <input id="websiteURL" formControlName="websiteURL" type="text" class="form-control bg-white" />
+            </div>
+            <div *ngIf="companyForm.get('websiteURL')?.invalid && companyForm.get('websiteURL')?.touched"
+              class="text-danger">
+              <div *ngIf="companyForm.get('websiteURL')?.errors?.['required']"> Website is required.
+              </div>
+              <div *ngIf="companyForm.get('websiteURL')?.errors?.['pattern']">Invalid Website is required.
+                format.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-4 justify-content-between flex-wrap flex-md-nowrap">
+          <!-- City -->
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="city" class="text-black">City <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <input id="city" formControlName="city" type="text" class="form-control bg-white" />
+            </div>
+            <div *ngIf="companyForm.get('city')?.invalid && companyForm.get('city')?.touched" class="text-danger">
+              City is required.
+            </div>
+          </div>
+
+          <!-- State -->
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="state" class="text-black">State <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <input id="state" formControlName="state" type="text" class="form-control bg-white" />
+            </div>
+            <div *ngIf="companyForm.get('state')?.invalid && companyForm.get('state')?.touched" class="text-danger">
+              State is required.
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-4 justify-content-between flex-wrap flex-md-nowrap">
+          <!-- Country Code -->
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="countryCode" class="text-black">Country Code <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <input id="countryCode" formControlName="countryCode" type="text" class="form-control bg-white" />
+            </div>
+            <div *ngIf="companyForm.get('countryCode')?.invalid && companyForm.get('countryCode')?.touched"
+              class="text-danger">
+              Country code is required.
+            </div>
+          </div>
+
+          <!-- Zip Code -->
+          <div class="form-group w-100 w-md-50 mb-2">
+            <label for="zipCode" class="text-black">Zip Code <span class="text-danger">*</span></label>
+            <div class="input-group">
+              <input id="zipCode" formControlName="zipCode" type="text" class="form-control bg-white" />
+            </div>
+            <div *ngIf="companyForm.get('zipCode')?.invalid && companyForm.get('zipCode')?.touched" class="text-danger">
+              Zip code is required.
+            </div>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="form-group">
+          <label for="address" class="text-black">Address <span class="text-danger">*</span></label>
+          <textarea id="address" formControlName="address" class="form-control bg-white"></textarea>
+          <div *ngIf="companyForm.get('address')?.invalid && companyForm.get('address')?.touched" class="text-danger">
+            Address is required.
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mt-4">
+          <button type="submit" class="btn btn-danger">Save</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</div>

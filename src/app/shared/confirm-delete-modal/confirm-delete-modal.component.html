@@ -1,0 +1,27 @@
+<div class="modal-overlay" (click)="onCancel()"></div>
+
+<div class="modal-dialog modal-sm" role="document">
+  <div class="modal-content">
+    <div class="modal-header text-center">
+      <!-- <button type="button" class="close" aria-label="Close" (click)="onCancel()">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+      <div class="modal-body">
+        <svg width="33" height="36" viewBox="0 0 33 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M6.5 36C5.4 36 4.45833 35.6083 3.675 34.825C2.89167 34.0417 2.5 33.1 2.5 32V6H0.5V2H10.5V0H22.5V2H32.5V6H30.5V32C30.5 33.1 30.1083 34.0417 29.325 34.825C28.5417 35.6083 27.6 36 26.5 36H6.5ZM26.5 6H6.5V32H26.5V6ZM10.5 28H14.5V10H10.5V28ZM18.5 28H22.5V10H18.5V28Z"
+            fill="#3859AD" />
+        </svg>
+        <h2 class="modal-title font-bold text-[20px]">Are You Sure?</h2>
+        <p class="modal-text text-[18px]">
+          You will not be able to recover the deleted data
+        </p>
+      </div>
+    </div>
+
+    <div class="modal-footer flex-nowrap justify-content-center p-2">
+      <button class="btn btn-outline-primary w-50" (click)="onCancel()">No, Cancel</button>
+      <button class="btn btn-primary w-50" (click)="onConfirm()">Yes, Delete</button>
+    </div>
+  </div>
+</div>

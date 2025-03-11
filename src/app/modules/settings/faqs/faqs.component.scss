@@ -1,0 +1,51 @@
+@import '../../../../assets/styles/main';
+
+.btn-danger {
+  @include submit-button(var(--red-color));
+}
+
+button:nth-last-of-type(2) {
+  color: #0060B9;
+  font-size: 1rem;
+}
+
+.position-relative:nth-of-type(1) {
+  button {
+    background-color: #D7ECFF;
+  }
+}
+
+.position-relative:nth-of-type(2) {
+  button {
+    background-color: #FEEEEE;
+  }
+}
+
+section {
+  height: fit-content;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+}
+
+.font-weight-bold {
+  font-weight: 700;
+}
+
+.btn-outline-danger {
+  border-color: #F45859;
+}
+
+.btn-outline-danger:hover {
+  background-color: #FEEEEE;
+}
+
+.form-control {
+  border: 1px solid rgba(204, 204, 204, 0.3);
+  border-radius: 0.375rem;
+}

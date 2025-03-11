@@ -1,0 +1,105 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@ng-select/ng-select/themes/default.theme.css";
+@import "./assets/styles/main";
+
+@keyframes donut-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+:root {
+  --lpx-logo: url('/assets/images/logo/logo-light.png');
+  --lpx-logo-icon: url('/assets/images/logo/logo-light-thumbnail.png');
+}
+
+body {
+  background-color: #EEEEEE;
+}
+
+.donut {
+  display: inline-block;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #7983ff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: donut-spin 1.2s linear infinite;
+
+  &.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.abp-logo {
+  background-repeat: no-repeat;
+}
+
+.abp-support {
+  width: 178px;
+  height: 30px;
+  background-image: url('/assets/images/getting-started/abp-support.svg');
+}
+
+.abp-community {
+  width: 215px;
+  height: 30px;
+  background-image: url('/assets/images/getting-started/abp-community.svg');
+}
+
+.abp-blog {
+  width: 142px;
+  height: 30px;
+  background-image: url('/assets/images/getting-started/abp-blog.svg');
+}
+
+.logo-x {
+  width: 20px;
+  height: 20px;
+  background-image: url('/assets/images/getting-started/x.svg');
+}
+
+.section-title {
+  font-size: 1.25rem !important;
+  font-weight: bold;
+  margin: 0;
+  // padding: 0;
+}
+
+/* Hide the tooltip by default */
+.tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  top: -1rem;
+}
+
+/* Show the tooltip when hovering over the button */
+.position-relative:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+.form-label,
+label {
+  color: black !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+input,
+textarea,
+select {
+  color: #A1A1A1 !important;
+}
+
+// .bg-light {
+//   width: calc(100dvw + 312px);
+// }
